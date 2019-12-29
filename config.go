@@ -12,6 +12,7 @@ type configuration struct {
 	fontID int
 
 	ohBase string
+	ohItem string
 
 	onString  string
 	offString string
@@ -30,6 +31,7 @@ func defaults() *configuration {
 	return &configuration{
 		fontID:    9,
 		ohBase:    defaultOpenhabBase,
+		ohItem:    "Fan",
 		onString:  "",
 		offString: "ﴛ",
 		chgString: "ﴛ",
@@ -48,7 +50,8 @@ func (c *configuration) flags() *toolman.InitOption {
 	fs.IntVar(&c.fontID, "font-id", c.fontID, "Polybar Font ID")
 	fs.IntVar(&c.width, "width", c.width, "Total character width")
 
-	fs.StringVar(&c.ohBase, "openhab-base-url", c.ohBase, "Openhab base URL")
+	fs.StringVar(&c.ohBase, "openhab-base-url", c.ohBase, "OpenHAB base URL")
+	fs.StringVar(&c.ohItem, "openhab-item", c.ohItem, "OpenHAB item name")
 
 	fs.StringVar(&c.onString, "on-string", c.onString, "String to display when fan is ON")
 	fs.StringVar(&c.offString, "off-string", c.offString, "String to display when fan is OFF")

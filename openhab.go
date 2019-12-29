@@ -14,17 +14,19 @@ import (
 
 const (
 	defaultOpenhabBase = "http://openhab:8080/rest"
-	togglePath         = "items/Fan"
-	statePath          = "items/Fan/state"
-	eventsPath         = "events?topics=smarthome/items/Fan/statechanged"
+
+	togglePath = "items/%s"
+	statePath  = "items/%s/state"
+	eventsPath = "events?topics=smarthome/items/%s/statechanged"
 )
 
 type openhab struct {
 	base string
+	item string
 }
 
 func (oh *openhab) url(p string) string {
-	return fmt.Sprintf("%s/%s", oh.base, p)
+	return fmt.Sprintf("%s/%s", oh.base, fmt.Sprintf(p, oh.item))
 }
 
 func (oh *openhab) toggleState(ctx context.Context) error {

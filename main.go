@@ -39,7 +39,7 @@ func main() {
 }
 
 func run(ctx context.Context, cfg *configuration) error {
-	oh := &openhab{cfg.ohBase}
+	oh := &openhab{cfg.ohBase, cfg.ohItem}
 
 	cs, err := oh.currentState(ctx)
 	if err != nil {
